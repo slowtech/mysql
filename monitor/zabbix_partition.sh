@@ -2,7 +2,7 @@
 SQL="/tmp/partition.sql"
 HISTORY_KEEP_DAYS=30
 TREND_KEEP_MONTHS=12
-ZABBIX_VERSION=2
+ZABBIX_VERSION=3
 
 cur_year=`date +"%Y"`
 next_year=$cur_year
@@ -206,7 +206,8 @@ DELIMITER ;
 
 SET @@global.event_scheduler = on;
 
-CREATE EVENT maintain_partition
+DROP EVENT zabbix.maintain_partition;
+CREATE EVENT zabbix.maintain_partition
     ON SCHEDULE
       EVERY 1 DAY
     COMMENT 'maintain zabbix partition tables every day'
