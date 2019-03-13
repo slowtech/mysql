@@ -1,5 +1,4 @@
 #!/bin/bash
-
 MBL=/usr/bin/mysqlbinlog
 MYSQL_HOST=192.168.244.10
 MYSQL_PORT=3306
