@@ -33,8 +33,8 @@ for binlog_event in stream:
             for each_row in rows:
                 col_name = ' AND '.join(
                     ['`%s`=%%s' % (k) if v != None else '`%s` is %%s' % (k) for k, v in each_row['values'].iteritems()])
-            delete_sql = "DELETE FROM `{0}`.`{1}` WHERE {2};".format(table_schema, table_name, col_name)
-            print(cursor.mogrify(delete_sql, each_row['values'].values()))
+                delete_sql = "DELETE FROM `{0}`.`{1}` WHERE {2};".format(table_schema, table_name, col_name)
+                print(cursor.mogrify(delete_sql, each_row['values'].values()))
         elif isinstance(binlog_event, WriteRowsEvent):
             for each_row in rows:
                 col_name = ','.join('`%s`' % (k) for k in each_row['values'].keys())
