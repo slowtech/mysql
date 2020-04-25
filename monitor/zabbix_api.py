@@ -17,7 +17,10 @@ class ZabbixAPI(object):
         headers = {"Content-Type": "application/json"}
         request = requests.post(self.url, data=data, headers=headers, timeout=timeout)
         r = request.json()
-        return r["result"]
+        if r.has_key("error"):
+           raise ValueError(r["error"])
+        else:
+            return r["result"]
 
     # 获取认证ID，所有的API请求都需要带上这个认证ID
     def get_auth_id(self, user, passwd):
