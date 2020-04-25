@@ -2,7 +2,7 @@
 SQL="/tmp/partition.sql"
 HISTORY_KEEP_DAYS=30
 TREND_KEEP_MONTHS=12
-ZABBIX_VERSION=3
+ZABBIX_VERSION=4
 
 cur_year=`date +"%Y"`
 next_year=$cur_year
@@ -18,7 +18,7 @@ MONTHLY="trends trends_uint"
 echo "Use zabbix;" > $SQL
 echo -en "\n" >>$SQL
 
-if [ $ZABBIX_VERSION != 3 ]; then
+if [ $ZABBIX_VERSION -eq 2 ]; then
 cat >>$SQL <<_EOF_
 ALTER TABLE history_log DROP KEY history_log_2;
 ALTER TABLE history_log ADD KEY history_log_2(itemid, id);
@@ -206,7 +206,7 @@ DELIMITER ;
 
 SET @@global.event_scheduler = on;
 
-DROP EVENT zabbix.maintain_partition;
+DROP EVENT IF EXISTS zabbix.maintain_partition;
 CREATE EVENT zabbix.maintain_partition
     ON SCHEDULE
       EVERY 1 DAY
