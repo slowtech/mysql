@@ -133,7 +133,7 @@ def main():
     
     zabbix_client.maintenance_create("node1",12)
 
-    time_from=int(time.mktime((datetime.datetime.now() - datetime.timedelta(days=10)).timetuple()))
+    time_from=int(time.mktime((datetime.datetime.now() - datetime.timedelta(days=20)).timetuple()))
     problem_result=zabbix_client.problem_get(time_from)
 
     trigger_ids=[each_problem["objectid"]for each_problem in problem_result] 
