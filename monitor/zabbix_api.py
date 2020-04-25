@@ -131,8 +131,6 @@ def main():
     hostid=zabbix_client.host_get("node1")
     print hostid
     
-    zabbix_client.maintenance_create("node1",12)
-
     time_from=int(time.mktime((datetime.datetime.now() - datetime.timedelta(days=20)).timetuple()))
     problem_result=zabbix_client.problem_get(time_from)
 
@@ -153,5 +151,7 @@ def main():
         last_time=format_second(time.time()-problem_time)
         print problem_time_format,host,problem_name,last_time
 
+    zabbix_client.maintenance_create("node1",12)
+    
 if __name__ == "__main__":
     main()
