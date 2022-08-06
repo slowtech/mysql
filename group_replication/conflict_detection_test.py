@@ -4,7 +4,7 @@ import pymysql, threading, time
 
 node1 = "192.168.244.10"
 node2 = "192.168.244.20"
-port = 3309
+port = 3306
 user = "root"
 password = "123456"
 
