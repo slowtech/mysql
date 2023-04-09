@@ -1,2 +1,1 @@
-# MySQL 实战
-MySQL 实战
+# 《MySQL实战》相关资料
